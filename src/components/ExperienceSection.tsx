@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import mahiLogo from '../assets/companies/mahi.gif';
+import biolegacyLogo from '../assets/companies/bio-legacy-replacement.png';
+import jenniLogo from '../assets/companies/jenni-ai-logo-replacement.png';
+import entegrisLogo from '../assets/companies/entegris-replacement.png';
+import zsistemLogo from '../assets/companies/z-sistem-replacement.png';
+import aitalesLogo from '../assets/companies/AI-Tales.svg';
 
 interface Experience {
   id: string;
@@ -7,7 +13,7 @@ interface Experience {
   duration: string;
   location: string;
   logo: string;
-  logoType: 'emoji' | 'microsoft' | 'blueorigin' | 'hcrlab' | 'cledge' | 'codeninjas' | 'jenni';
+  logoType: 'emoji' | 'microsoft' | 'blueorigin' | 'hcrlab' | 'cledge' | 'codeninjas' | 'jenni' | 'mahi' | 'biolegacy' | 'entegris' | 'zsistem' | 'aitales';
   team?: string;
   description: string[];
   skills: string[];
@@ -50,8 +56,8 @@ const ExperienceSection: React.FC = () => {
       role: 'SWE Intern',
       duration: 'Jun 2025 – Jan 2026',
       location: 'Seoul, SK',
-      logo: '🤖',
-      logoType: 'emoji',
+      logo: jenniLogo,
+      logoType: 'jenni',
       description: [
         'Spearheading <strong>Stealth</strong> for Jenni.ai',
         'Owning production uptime & feature velocity for <strong>ManuscriptCheck.ai</strong>'
@@ -65,8 +71,8 @@ const ExperienceSection: React.FC = () => {
       role: 'TPM Co-op',
       duration: 'Jan 2025 – Jun 2025',
       location: 'Boston, MA',
-      logo: '🏭',
-      logoType: 'emoji',
+      logo: entegrisLogo,
+      logoType: 'entegris',
       description: [
         'Built <strong>Accolade + Power BI</strong> executive dashboards that shape quarterly OKRs',
         'Rolled out <strong>M365 Copilot Studio agentic workflows</strong>; demoed live at monthly PMC',
@@ -81,8 +87,8 @@ const ExperienceSection: React.FC = () => {
       role: 'Systems Intern',
       duration: 'Jun 2024 – Sep 2024',
       location: 'Ankara, TR',
-      logo: '🚁',
-      logoType: 'emoji',
+      logo: zsistemLogo,
+      logoType: 'zsistem',
       description: [
         'Led <strong>NATO DIANA</strong> avionics + autonomy proposal',
         'Developed <strong>OpenCV</strong> camera-calibration pipeline (≤ 2 cm error) across webcams, ArduCam, Android',
@@ -97,8 +103,8 @@ const ExperienceSection: React.FC = () => {
       role: 'SWE Engineer',
       duration: 'Feb 2024 – May 2024',
       location: 'Gyeonggi-do, SK',
-      logo: '📚',
-      logoType: 'emoji',
+      logo: aitalesLogo,
+      logoType: 'aitales',
       description: [
         'Shipped lightweight <strong>Ruby on Rails + Hotwire</strong> Ed-Tech MVP, powered by <strong>GPT-4 & Sora-Vision</strong>',
         'Designed child- & teacher-friendly <strong>one-stop learning UI</strong> for Seoul hagwons'
@@ -112,8 +118,8 @@ const ExperienceSection: React.FC = () => {
       role: 'Research Intern',
       duration: 'Jan 2023 – Aug 2023',
       location: 'Seattle, WA',
-      logo: '🧬',
-      logoType: 'emoji',
+      logo: biolegacyLogo,
+      logoType: 'biolegacy',
       description: [
         'Drove early-stage <strong>R&D</strong> on organic re-warming in UW\'s Cryobiology Lab',
         'Automated vitrification tests; ran deep <strong>Python data-analysis</strong> on CPA performance',
@@ -128,8 +134,8 @@ const ExperienceSection: React.FC = () => {
       role: 'Research Intern',
       duration: 'Jun 2022 – Sep 2022',
       location: 'Houston, TX',
-      logo: '🔬',
-      logoType: 'emoji',
+      logo: mahiLogo,
+      logoType: 'mahi',
       description: [
         'Co-authored IEEE paper on the <strong>Snaptics</strong> modular haptics platform',
         'Fabricated low-cost haptic devices via <strong>3-D printing & micro-soldering</strong>, halving BOM cost',
@@ -144,6 +150,9 @@ const ExperienceSection: React.FC = () => {
   const [selectedExperience, setSelectedExperience] = useState<Experience>(experiences[0]);
 
   const renderLogo = (exp: Experience) => {
+    if (exp.logoType === 'mahi' || exp.logoType === 'biolegacy' || exp.logoType === 'jenni' || exp.logoType === 'entegris' || exp.logoType === 'zsistem' || exp.logoType === 'aitales') {
+      return <img src={exp.logo} alt={`${exp.company} logo`} className="company-logo" />;
+    }
     return <span className="emoji-logo">{exp.logo}</span>;
   };
 
