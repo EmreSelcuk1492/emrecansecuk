@@ -1,0 +1,8 @@
+/* Main CSS Index - Import all organized styles */
+@import url('./variables.css');
+@import url('./base.css');
+@import url('./layout.css');
+@import url('./components.css');
+@import url('./projects.css');
+@import url('./experience.css');
+@import url('./responsive.css'); 

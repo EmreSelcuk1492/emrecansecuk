@@ -160,14 +160,14 @@ const AboutSection: React.FC = () => {
         <h2 className="section-title">About Me</h2>
         <div className="about-content">
           <div className="about-text">
-            <p>
-              I'm a developer with a passion for creating beautiful and functional web applications. 
-              With expertise in modern web technologies, I strive to build solutions that make a difference.
-            </p>
-            <p>
-              My global experience spans across multiple continents, working with diverse teams and technologies 
-              to solve complex problems and drive innovation.
-            </p>
+            <p><strong>Hi, I’m Emre Selcuk</strong>—just <em>Emre</em> works! I’m a 20-year-old developer based in Seattle, Washington.</p>
+
+            <p>My laptop has bounced from <strong>Seoul</strong>, where I shipped a GPT-powered ed-tech MVP at <em>AI-Tales</em>, to <strong>Ankara</strong>, calibrating VTOL-drone cameras at <em>Z-Sistem</em>, and finally to <strong>Boston</strong>, guiding AI roll-outs at <em>Entegris</em>. Along the way I built a close partnership with <strong>Jenni.ai</strong>—starting with contract projects at the University of Washington and growing into a full-time internship in their Seoul office.</p>
+
+            <p>Now I’ve co-founded <strong>ManuscriptCheck.ai</strong>, an upcoming Jenni.ai tool that streamlines the academic publishing process.</p>
+
+            <p>When I’m not coding, you’ll catch me documenting my journey on <a href="https://emrecanselcuk.com" target="_blank">emrecanselcuk.com</a>, open-sourcing experiments, and expanding my digital footprint. No matter the continent or industry, <strong>continuous learning and development</strong> ties every adventure together—so if you’re building something that helps people grow, let’s talk.</p>
+
           </div>
           <div className="globe-container">
             <Globe

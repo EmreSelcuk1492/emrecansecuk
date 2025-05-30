@@ -163,7 +163,6 @@ const ExperienceSection: React.FC = () => {
           <div className="experience-split-container">
             <div className="experience-split-header">
               <h2 className="experience-split-title">Experience</h2>
-              <div className="experience-split-icon">💼</div>
             </div>
             
             <div className="experience-split-content">

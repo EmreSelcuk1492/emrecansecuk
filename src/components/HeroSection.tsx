@@ -61,7 +61,7 @@ const HeroSection: React.FC = () => {
               {displayText}
             </div>
           </div>
-          <p className="hero-subtitle">A passionate developer crafting digital experiences</p>
+          <p className="hero-subtitle">~a snapshot of my developer journey~</p>
           <button className="btn" onClick={scrollToContact}>
             Get in Touch
           </button>

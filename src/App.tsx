@@ -5,6 +5,8 @@ import ExperienceSection from './components/ExperienceSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import FloatingThemeToggle from './components/FloatingThemeToggle';
+import SocialMediaPanel from './components/SocialMediaPanel';
 import { ThemeProvider } from './context/ThemeContext';
 import './styles.css';
 
@@ -21,6 +23,8 @@ function App() {
           <ContactSection />
         </main>
         <Footer />
+        <FloatingThemeToggle />
+        <SocialMediaPanel />
       </div>
     </ThemeProvider>
   );
