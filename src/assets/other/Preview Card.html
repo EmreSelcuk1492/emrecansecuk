@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)file:///Users/emreselcuk/Documents/GitHub/emrecansecuk/public/preview-card-generator.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Card Generator</title>
+    <link href="./Preview Card_files/css2" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .preview-card {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Matrix-style background pattern */
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(139, 0, 139, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 0, 139, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(139, 0, 139, 0.05) 0%, transparent 50%);
+            opacity: 0.6;
+        }
+        
+        .matrix-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(139, 0, 139, 0.2) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .cube-container {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, rgba(139, 0, 139, 0.2) 0%, transparent 70%);
+            border-radius: 20px;
+            border: 2px solid rgba(139, 0, 139, 0.3);
+            box-shadow: 0 0 30px rgba(139, 0, 139, 0.4);
+        }
+        
+        .cube-3d {
+            width: 80px;
+            height: 80px;
+            transform: scale(1.2);
+        }
+        
+        .name-title {
+            text-align: left;
+        }
+        
+        .name {
+            font-size: 72px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(139, 0, 139, 0.5);
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(139, 0, 139, 0.5);
+        }
+        
+        .description {
+            font-size: 22px;
+            color: #cccccc;
+            max-width: 900px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .tech-stack {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .tech-tag {
+            background: rgba(139, 0, 139, 0.2);
+            border: 1px solid rgba(139, 0, 139, 0.4);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .website-url {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 18px;
+            color: #8B008B;
+            font-weight: 600;
+        }
+        
+        .glow-effect {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 0, 139, 0.1) 0%, transparent 70%);
+            animation: glow 6s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-card">
+        <div class="glow-effect"></div>
+        <div class="matrix-bg"></div>
+        <div class="matrix-dots"></div>
+        
+        <div class="content">
+            <div class="profile-section">
+                <div class="cube-container">
+                    <svg class="cube-3d" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <defs>
+                            <lineargradient id="cubeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9"></stop>
+                                <stop offset="100%" style="stop-color:#cccccc;stop-opacity:0.8"></stop>
+                            </lineargradient>
+                            <lineargradient id="cubeGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#888888;stop-opacity:0.8"></stop>
+                                <stop offset="100%" style="stop-color:#555555;stop-opacity:0.7"></stop>
+                            </lineargradient>
+                            <lineargradient id="cubeGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#666666;stop-opacity:0.8"></stop>
+                                <stop offset="100%" style="stop-color:#333333;stop-opacity:0.7"></stop>
+                            </lineargradient>
+                        </defs>
+                        
+                        <!-- 3D Cube Faces -->
+                        <!-- Front face (lightest) -->
+                        <polygon points="25,25 75,25 75,75 25,75" fill="url(#cubeGradient1)" stroke="rgba(0,0,0,0.3)" stroke-width="1"></polygon>
+                        
+                        <!-- Right face (medium) -->
+                        <polygon points="75,25 85,15 85,65 75,75" fill="url(#cubeGradient2)" stroke="rgba(0,0,0,0.4)" stroke-width="1"></polygon>
+                        
+                        <!-- Top face (darkest) -->
+                        <polygon points="25,25 35,15 85,15 75,25" fill="url(#cubeGradient3)" stroke="rgba(0,0,0,0.4)" stroke-width="1"></polygon>
+                        
+                        <!-- Highlight edges for 3D effect -->
+                        <line x1="25" y1="25" x2="35" y2="15" stroke="rgba(255,255,255,0.6)" stroke-width="1"></line>
+                        <line x1="75" y1="25" x2="85" y2="15" stroke="rgba(255,255,255,0.5)" stroke-width="1"></line>
+                        <line x1="75" y1="75" x2="85" y2="65" stroke="rgba(255,255,255,0.4)" stroke-width="1"></line>
+                        
+                        <!-- Inner cube details -->
+                        <rect x="35" y="35" width="30" height="30" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="0.5"></rect>
+                    </svg>
+                </div>
+                <div class="name-title">
+                    <h1 class="name">Emre Can Selcuk</h1>
+                    <p class="title">Full Stack Developer</p>
+                </div>
+            </div>
+            
+            <p class="description">
+                20-year-old developer currently in Seoul, South Korea<br>
+                SWE intern @jenni.ai<br>
+                Co-founder of @ManuscriptCheck.ai
+            </p>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">AI/ML</span>
+                <span class="tech-tag">GPT Integration</span>
+                <span class="tech-tag">Ed-Tech</span>
+            </div>
+        </div>
+        
+        <div class="website-url">EmreCanSelcuk.com</div>
+    </div>
+    
+    <div style="margin-top: 30px; text-align: center; color: #666;">
+        <p>Right-click the card above and "Save image as..." to save your preview card as preview-card.jpg</p>
+        <p>Then upload it to your public folder and update the meta tags with the correct URL.</p>
+    </div>
+
+ </body></html>
