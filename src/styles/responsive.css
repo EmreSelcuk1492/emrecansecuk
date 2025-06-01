@@ -40,365 +40,625 @@
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  /* Navigation mobile adjustments */
-  .nav-links {
-    gap: var(--spacing-sm);
+  /* Base mobile optimizations */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
-  
-  .theme-toggle {
-    padding: 6px 12px;
-    font-size: var(--font-size-xs);
-    margin-left: var(--spacing-xs);
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
-  
-  .theme-toggle .theme-text {
-    display: none;
+
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
-  
+
+  /* Container adjustments */
+  .container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
   /* Hero mobile adjustments */
   .hero-title,
   .typing-text {
     font-size: var(--font-size-4xl);
+    line-height: 1.1;
+    text-align: center;
   }
-  
+
   .hero-subtitle {
     font-size: var(--font-size-xl);
+    text-align: center;
+    margin-bottom: 2rem;
   }
-  
+
   .hero {
-    min-height: 70vh;
-    padding: 100px 0 60px;
+    min-height: 80vh;
+    padding: 120px 0 80px;
+    text-align: center;
   }
-  
+
   .hero .container {
-    padding: 0 var(--spacing-sm);
+    padding: 0 1rem;
   }
-  
+
+  /* Button improvements for mobile */
+  .btn {
+    padding: 1rem 2rem;
+    font-size: var(--font-size-base);
+    min-height: 48px;
+    border-radius: var(--radius-lg);
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
   /* Section mobile adjustments */
   .section {
     min-height: auto;
-    padding: 60px 0;
+    padding: 4rem 0;
+    scroll-margin-top: 80px;
   }
-  
+
   .section-title {
     font-size: var(--font-size-3xl);
+    margin-bottom: 2rem;
+    text-align: center;
   }
-  
+
   /* About section mobile */
   .about-content {
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: 2rem;
     text-align: center;
   }
-  
+
   .about-text {
     min-width: auto;
+    order: 2;
   }
-  
+
   .about-text p {
     text-align: center;
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
   }
-  
+
   .globe-container {
-    flex: 0 0 300px;
+    flex: 0 0 280px;
+    order: 1;
+    margin: 0 auto;
   }
-  
+
   .globe-container canvas {
-    width: 300px !important;
-    height: 300px !important;
+    width: 280px !important;
+    height: 280px !important;
+    border-radius: 50%;
+    box-shadow: var(--shadow-lg);
   }
-  
+
   /* Projects mobile adjustments */
   .projects-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
+    max-width: 100%;
+    gap: 1.5rem;
   }
-  
+
   .projects-timeline-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-    padding: 0 var(--spacing-xs);
-    max-width: 400px;
+    gap: 1.5rem;
+    padding: 0;
+    max-width: 100%;
   }
-  
+
   .project-card-modern {
     min-height: auto;
-    margin: 0 auto;
-    max-width: 400px;
+    margin: 0;
+    max-width: 100%;
     width: 100%;
+    border-radius: var(--radius-lg);
   }
-  
+
   .project-image-container {
-    height: 180px;
+    height: 200px;
   }
-  
+
   .project-title-overlay {
     font-size: var(--font-size-xl);
   }
-  
+
   .project-location {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
   }
-  
+
   .project-content-modern {
-    padding: var(--spacing-md);
-    gap: 0.8rem;
+    padding: 1.5rem;
+    gap: 1rem;
   }
-  
+
   .project-subtitle {
     font-size: var(--font-size-xl);
   }
-  
+
   .project-description {
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
   }
-  
+
   .tech-badge {
-    font-size: var(--font-size-xs);
-    padding: 0.35rem 0.8rem;
+    font-size: var(--font-size-sm);
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
   }
-  
+
   .project-link {
-    padding: 0.8rem 1.3rem;
-    font-size: var(--font-size-xs);
+    padding: 1rem 1.5rem;
+    font-size: var(--font-size-base);
+    min-height: 48px;
   }
-  
+
   .placeholder-title {
     font-size: var(--font-size-2xl);
   }
-  
+
   .placeholder-text {
     font-size: var(--font-size-base);
   }
-  
+
   .placeholder-content {
-    padding: var(--spacing-md);
+    padding: 1.5rem;
   }
-  
+
   /* Experience mobile adjustments */
   .experience-container {
-    margin: 0 var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-md);
+    margin: 0 1rem;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-lg);
   }
-  
+
   .experience-title {
     font-size: var(--font-size-3xl);
   }
-  
+
   .experience-header {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 2rem;
   }
-  
+
   .experience-card {
-    padding: var(--spacing-md);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.5rem;
   }
-  
+
   .experience-company-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: var(--spacing-sm);
+    gap: 1rem;
   }
-  
+
   .company-logo {
     font-size: var(--font-size-4xl);
     min-width: 60px;
     height: 60px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    width: 60px;
   }
-  
+
   .company-name {
     font-size: var(--font-size-2xl);
   }
-  
+
   .highlight-item {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: var(--spacing-sm);
-    padding: 1.2rem;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    min-height: 48px;
   }
-  
+
   .highlight-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
-  
+
   .highlight-icon {
     font-size: var(--font-size-3xl);
-    min-width: 45px;
-    height: 45px;
-  }
-  
-  .skills-list {
+    min-width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
     justify-content: center;
   }
-  
+
+  .skills-list {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
   .skill-tag {
     font-size: var(--font-size-sm);
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
   }
-  
+
   /* Experience split layout mobile */
   .experience-split-container {
-    margin: 0 var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-md);
+    margin: 0 1rem;
+    padding: 2rem 1.5rem;
   }
-  
+
   .experience-split-title {
     font-size: var(--font-size-3xl);
   }
-  
+
   .experience-split-header {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 2rem;
   }
-  
+
   .job-list-item {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 0.75rem;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    min-height: 48px;
   }
-  
+
   .job-list-company {
-    font-size: 0.95rem;
+    font-size: var(--font-size-base);
   }
-  
+
   .job-list-role {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
   }
-  
+
   .job-details-company {
     font-size: var(--font-size-3xl);
   }
-  
+
   .job-details-team {
     font-size: var(--font-size-lg);
   }
-  
+
   .job-details-card {
-    padding: var(--spacing-md);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
   }
-  
+
   .job-details-description li {
-    font-size: 0.95rem;
-    padding-left: 1.2rem;
+    font-size: var(--font-size-base);
+    padding-left: 1rem;
+    margin-bottom: 0.75rem;
   }
-  
-  /* Contact mobile adjustments */
+
+  /* Contact mobile improvements */
   .contact-container {
-    margin: 0 var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-md);
+    margin: 0 1rem;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-lg);
   }
-  
+
   .contact-title {
     font-size: var(--font-size-4xl);
   }
-  
+
   .contact-icon {
     font-size: var(--font-size-4xl);
   }
-  
+
   .contact-header {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 2rem;
     flex-direction: column;
-    gap: var(--spacing-xs);
+    gap: 1rem;
   }
-  
+
   .form-input,
   .form-textarea {
-    padding: 0.9rem 0.9rem 0.9rem 2.8rem;
-    font-size: 0.95rem;
+    padding: 1rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: var(--radius-md);
+    min-height: 48px;
   }
-  
+
   .form-icon {
-    left: 0.8rem;
+    left: 1rem;
     font-size: var(--font-size-lg);
   }
-  
+
   .btn-modern {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.9rem;
+    padding: 1rem 2rem;
+    font-size: var(--font-size-base);
+    min-height: 48px;
+  }
+
+  /* Interactive elements */
+  a, button, input, textarea, select {
+    touch-action: manipulation;
+  }
+
+  /* Improve focus states for mobile */
+  :focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Loading states */
+  .loading {
+    pointer-events: none;
+    opacity: 0.6;
   }
 }
 
 /* Small Mobile Styles */
 @media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
   .hero-title,
   .typing-text {
     font-size: var(--font-size-3xl);
+    line-height: 1.2;
   }
-  
+
   .hero-subtitle {
     font-size: var(--font-size-lg);
+    margin-bottom: 1.5rem;
   }
-  
+
+  .hero {
+    min-height: 70vh;
+    padding: 100px 0 60px;
+  }
+
+  .section {
+    padding: 3rem 0;
+    scroll-margin-top: 70px;
+  }
+
   .section-title {
     font-size: var(--font-size-2xl);
+    margin-bottom: 1.5rem;
   }
-  
+
+  /* About adjustments */
+  .globe-container {
+    flex: 0 0 240px;
+  }
+
+  .globe-container canvas {
+    width: 240px !important;
+    height: 240px !important;
+  }
+
+  .about-text p {
+    font-size: var(--font-size-base);
+    margin-bottom: 1rem;
+  }
+
+  /* Projects for small mobile */
   .projects-timeline-grid {
-    padding: 0;
-    gap: 1.2rem;
+    padding: 0 0.5rem;
+    gap: 1.25rem;
   }
-  
+
   .project-card-modern {
-    margin: 0;
     border-radius: var(--radius-md);
-    max-width: 100%;
   }
-  
+
   .project-image-container {
     height: 160px;
     border-radius: var(--radius-md) var(--radius-md) 0 0;
   }
-  
+
   .project-title-overlay {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
-  
+
   .project-content-modern {
-    padding: 1.2rem;
+    padding: 1.25rem;
   }
-  
+
   .project-subtitle {
     font-size: var(--font-size-lg);
   }
-  
+
   .project-description {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
-  
+
   .tech-badge {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.7rem;
-  }
-  
-  .project-link {
-    padding: 0.7rem 1.2rem;
     font-size: 0.8rem;
-    border-radius: var(--radius-xl);
+    padding: 0.4rem 0.8rem;
   }
-  
+
+  .project-link {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+    border-radius: var(--radius-lg);
+  }
+
   .placeholder-title {
     font-size: var(--font-size-xl);
   }
-  
+
   .placeholder-text {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
-  
+
   .placeholder-content {
-    padding: 1.2rem;
+    padding: 1.25rem;
   }
-  
-  .container {
-    padding: 0 var(--spacing-xs);
+
+  /* Contact for small mobile */
+  .contact-container {
+    margin: 0 0.75rem;
+    padding: 1.5rem 1.25rem;
+    border-radius: var(--radius-md);
   }
-  
+
+  .contact-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .contact-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: var(--font-size-base);
+  }
+
+  /* Experience for small mobile */
+  .experience-container {
+    margin: 0 0.75rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .experience-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .company-logo {
+    font-size: var(--font-size-3xl);
+    min-width: 48px;
+    height: 48px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    width: 48px;
+    border-radius: var(--radius-md);
+  }
+
+  .company-name {
+    font-size: var(--font-size-xl);
+  }
+
+  .highlight-item {
+    padding: 1.25rem;
+    gap: 0.75rem;
+  }
+
+  .highlight-icon {
+    font-size: var(--font-size-2xl);
+    min-width: 40px;
+    height: 40px;
+  }
+
   /* Coming soon modal mobile */
   .coming-soon-modal {
-    margin: var(--spacing-sm);
-    width: calc(100% - var(--spacing-md));
+    margin: 1rem;
+    width: calc(100% - 2rem);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+}
+
+/* Touch-friendly adjustments for all mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  /* Ensure all interactive elements meet minimum touch target size */
+  a, button, input, textarea, select, .btn, .nav-links a, .project-card, .highlight-item {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .project-card:hover,
+  .highlight-item:hover,
+  .btn:hover {
+    transform: none;
+  }
+
+  /* Add active states for better touch feedback */
+  .project-card:active,
+  .btn:active,
+  .highlight-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  /* Improve form inputs for touch */
+  input, textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    -webkit-appearance: none;
+    border-radius: var(--radius-md);
+  }
+
+  /* Better button styling for touch */
+  .btn {
+    -webkit-appearance: none;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--color-accent);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    min-height: 60vh;
+    padding: 80px 0 40px;
+  }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .globe-container {
+    flex: 0 0 200px;
+  }
+
+  .globe-container canvas {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+
+/* High DPI displays */
+@media (min-resolution: 2dppx) {
+  .project-image,
+  .company-logo img,
+  .globe-container canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .globe-container canvas {
+    animation: none !important;
   }
 }
 
