@@ -82,10 +82,15 @@ const Navigation: React.FC = () => {
             left: 0;
             right: 0;
             z-index: 999;
-            background: rgba(var(--color-bg-primary-rgb, 255, 255, 255), 0.9);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--color-border);
             transition: all var(--transition-base);
+          }
+
+          /* Light theme navigation background */
+          [data-theme="light"] .nav {
+            background: rgba(255, 255, 255, 0.85);
           }
 
           .nav-container {
@@ -125,7 +130,7 @@ const Navigation: React.FC = () => {
           }
 
           .nav-links a:hover {
-            background: rgba(var(--color-accent-rgb), 0.1);
+            background: rgba(139, 0, 139, 0.1);
             color: var(--color-accent-light);
             transform: translateY(-2px);
           }
@@ -133,14 +138,14 @@ const Navigation: React.FC = () => {
           .nav-links a.active {
             background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
             color: var(--color-bg-primary);
-            box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.4);
+            box-shadow: 0 4px 15px rgba(139, 0, 139, 0.4);
             transform: translateY(-1px);
           }
 
           .nav-links a.active:hover {
             background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(var(--color-accent-rgb), 0.5);
+            box-shadow: 0 6px 20px rgba(139, 0, 139, 0.5);
           }
 
           .nav-links a::before {
@@ -167,7 +172,7 @@ const Navigation: React.FC = () => {
           /* Mobile Dropdown Navigation */
           .mobile-nav-toggle {
             display: none;
-            background: rgba(var(--color-bg-primary-rgb), 0.9);
+            background: var(--color-bg-primary);
             border: 2px solid var(--color-accent);
             border-radius: 12px;
             padding: 0.75rem 1rem;
@@ -181,25 +186,25 @@ const Navigation: React.FC = () => {
             font-weight: 500;
             transition: all var(--transition-base);
             backdrop-filter: blur(5px);
-            box-shadow: 0 0 0 1px rgba(var(--color-accent-rgb), 0.2);
+            box-shadow: 0 0 0 1px rgba(139, 0, 139, 0.2);
           }
 
           .mobile-nav-toggle:hover {
             border-color: var(--color-accent-light);
-            background: rgba(var(--color-accent-rgb), 0.1);
-            box-shadow: 0 0 0 2px rgba(var(--color-accent-rgb), 0.3), 0 4px 12px rgba(var(--color-accent-rgb), 0.2);
+            background: rgba(139, 0, 139, 0.1);
+            box-shadow: 0 0 0 2px rgba(139, 0, 139, 0.3), 0 4px 12px rgba(139, 0, 139, 0.2);
             transform: translateY(-1px);
           }
 
           .mobile-nav-toggle:active {
             transform: scale(0.98);
-            box-shadow: 0 0 0 1px rgba(var(--color-accent-rgb), 0.4);
+            box-shadow: 0 0 0 1px rgba(139, 0, 139, 0.4);
           }
 
           .mobile-nav-toggle:focus {
             outline: none;
             border-color: var(--color-accent-light);
-            box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.3);
+            box-shadow: 0 0 0 3px rgba(139, 0, 139, 0.3);
           }
 
           .mobile-nav-current {
@@ -261,7 +266,7 @@ const Navigation: React.FC = () => {
           }
 
           .mobile-nav-dropdown a:hover {
-            background: rgba(var(--color-accent-rgb), 0.1);
+            background: rgba(139, 0, 139, 0.1);
             color: var(--color-accent-light);
             padding-left: 1.5rem;
           }

@@ -164,7 +164,7 @@ const ContactSection: React.FC = () => {
             padding: 1.2rem 1.5rem;
             background: var(--color-bg-primary);
             border: 1px solid var(--color-border);
-            borderRadius: 16px;
+            borderRadius: 20px;
             fontSize: var(--font-size-base);
             color: var(--color-text-primary);
             transition: all var(--transition-base);
@@ -229,7 +229,7 @@ const ContactSection: React.FC = () => {
             .form-textarea-responsive {
               padding: 1rem 1.2rem;
               fontSize: 16px; /* Prevents zoom on iOS */
-              borderRadius: 12px;
+              borderRadius: 16px;
             }
 
             .form-textarea-responsive {
@@ -272,7 +272,7 @@ const ContactSection: React.FC = () => {
             .form-input-responsive,
             .form-textarea-responsive {
               padding: 0.875rem 1rem;
-              borderRadius: 10px;
+              borderRadius: 14px;
             }
 
             .form-textarea-responsive {
