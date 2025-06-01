@@ -195,7 +195,9 @@ const ContactSection: React.FC = () => {
           .form-submit-container {
             display: flex;
             justifyContent: center;
+            alignItems: center;
             marginTop: 1.5rem;
+            width: 100%;
           }
 
           /* Mobile Responsive Styles */
