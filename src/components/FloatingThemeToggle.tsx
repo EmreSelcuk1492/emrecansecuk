@@ -1,8 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 const FloatingThemeToggle: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const { theme } = useTheme();
+
+  const handleCubeClick = () => {
+    navigate('/theBoxMan');
+  };
 
   return (
     <>
@@ -230,8 +236,9 @@ const FloatingThemeToggle: React.FC = () => {
       
       <button 
         className="floating-theme-toggle"
-        onClick={toggleTheme}
-        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+        onClick={handleCubeClick}
+        aria-label="Enter TheBoxMan"
+        title="Enter TheBoxMan"
       >
         <div className="cube">
           <div className="cube-face cube-face-front" />

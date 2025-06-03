@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 const Navigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState('about');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -380,6 +382,62 @@ const Navigation: React.FC = () => {
               outline-offset: 2px;
             }
           }
+
+          /* Theme Toggle Styles */
+          .theme-toggle-nav {
+            position: relative;
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            user-select: none;
+            border: none;
+            background: transparent;
+            color: var(--color-text-primary);
+            font-weight: 500;
+            font-size: var(--font-size-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            min-height: 44px;
+            cursor: pointer;
+          }
+
+          .theme-toggle-nav:hover {
+            background: rgba(139, 0, 139, 0.1);
+            color: var(--color-accent-light);
+            transform: translateY(-2px);
+          }
+
+          .theme-slider {
+            width: 32px;
+            height: 18px;
+            background: ${theme === 'dark' ? '#333' : '#ddd'};
+            border-radius: 9px;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid ${theme === 'dark' ? '#555' : '#ccc'};
+          }
+
+          .theme-slider::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #666;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translateX(${theme === 'dark' ? '16px' : '2px'});
+            top: 1px;
+            left: 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+          }
+
+          @media (max-width: 768px) {
+            .theme-toggle-nav {
+              display: none;
+            }
+          }
         `}
       </style>
       
@@ -398,6 +456,15 @@ const Navigation: React.FC = () => {
                 </a>
               </li>
             ))}
+            <li>
+              <button 
+                className="theme-toggle-nav"
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              >
+                <div className="theme-slider"></div>
+              </button>
+            </li>
           </ul>
 
           {/* Mobile Dropdown Navigation */}
