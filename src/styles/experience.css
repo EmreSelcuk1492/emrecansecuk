@@ -328,6 +328,31 @@
   margin: 0 0 var(--spacing-sm) 0;
 }
 
+.job-details-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.job-details-role {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.job-details-duration {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.job-details-location {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
 .job-details-description {
   margin-bottom: var(--spacing-md);
 }

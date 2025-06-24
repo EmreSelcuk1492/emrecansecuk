@@ -454,7 +454,7 @@ const TheBoxMan: React.FC = () => {
           .achievement-title {
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             color: #ffffff;
           }
 
@@ -463,6 +463,21 @@ const TheBoxMan: React.FC = () => {
             color: #999999;
             font-weight: 600;
             margin-bottom: 1rem;
+          }
+
+          .achievement-location {
+            font-size: 1rem;
+            color: #cccccc;
+            font-weight: 500;
+            margin-bottom: 1rem;
+          }
+
+          .achievement-date {
+            font-size: 0.95rem;
+            color: #888888;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            font-style: italic;
           }
 
           .achievement-description {
@@ -524,6 +539,14 @@ const TheBoxMan: React.FC = () => {
           }
 
           .white-section .achievement-company {
+            color: #666666;
+          }
+
+          .white-section .achievement-location {
+            color: #666666;
+          }
+
+          .white-section .achievement-date {
             color: #666666;
           }
 
@@ -708,6 +731,8 @@ const TheBoxMan: React.FC = () => {
             <div className="achievement-card">
               <h4 className="achievement-title">Started University Journey</h4>
               <p className="achievement-company">Academic Foundation</p>
+              <p className="achievement-location">Ankara, Turkey</p>
+              <p className="achievement-date">2022</p>
               <p className="achievement-description">
                 Began building the foundation for software engineering expertise and technical skills development.
               </p>
@@ -715,6 +740,8 @@ const TheBoxMan: React.FC = () => {
             <div className="achievement-card">
               <h4 className="achievement-title">First Technical Projects</h4>
               <p className="achievement-company">Personal Development</p>
+              <p className="achievement-location">Ankara, Turkey</p>
+              <p className="achievement-date">2022</p>
               <p className="achievement-description">
                 Started exploring programming fundamentals and building initial projects to understand core concepts.
               </p>
@@ -729,7 +756,9 @@ const TheBoxMan: React.FC = () => {
             <div className="achievements-grid">
               <div className="achievement-card">
                 <h4 className="achievement-title">Research Internship</h4>
-                <p className="achievement-company">MAHI Lab, Houston</p>
+                <p className="achievement-company">MAHI Lab</p>
+                <p className="achievement-location">Houston, Texas</p>
+                <p className="achievement-date">Summer 2023</p>
                 <p className="achievement-description">
                   Gained hands-on experience in research methodologies and technical problem-solving in a professional environment.
                 </p>
@@ -737,6 +766,8 @@ const TheBoxMan: React.FC = () => {
               <div className="achievement-card">
                 <h4 className="achievement-title">Technical Skills Expansion</h4>
                 <p className="achievement-company">Skill Development</p>
+                <p className="achievement-location">Ankara, Turkey</p>
+                <p className="achievement-date">2023</p>
                 <p className="achievement-description">
                   Deepened understanding of software development practices and expanded technical toolkit.
                 </p>
@@ -751,21 +782,27 @@ const TheBoxMan: React.FC = () => {
           <div className="achievements-grid">
             <div className="achievement-card">
               <h4 className="achievement-title">AI-Tales Engineer</h4>
-              <p className="achievement-company">Seoul, South Korea</p>
+              <p className="achievement-company">AI-Tales</p>
+              <p className="achievement-location">Seoul, South Korea</p>
+              <p className="achievement-date">Jan 2024 - Dec 2024</p>
               <p className="achievement-description">
                 Built GPT-powered educational technology solutions, shipping innovative AI-driven products to market.
               </p>
             </div>
             <div className="achievement-card">
               <h4 className="achievement-title">Technical Project Manager</h4>
-              <p className="achievement-company">Entegris, Boston</p>
+              <p className="achievement-company">Entegris</p>
+              <p className="achievement-location">Boston, Massachusetts</p>
+              <p className="achievement-date">Summer 2024</p>
               <p className="achievement-description">
                 Led AI implementation strategies and guided technical rollouts in enterprise environments.
               </p>
             </div>
             <div className="achievement-card">
               <h4 className="achievement-title">Systems Development</h4>
-              <p className="achievement-company">Z-Sistem, Ankara</p>
+              <p className="achievement-company">Z-Sistem</p>
+              <p className="achievement-location">Ankara, Turkey</p>
+              <p className="achievement-date">Fall 2024</p>
               <p className="achievement-description">
                 Worked on VTOL drone camera calibration systems, developing precision technical solutions.
               </p>
@@ -779,8 +816,10 @@ const TheBoxMan: React.FC = () => {
             <h3 className="year-title">2025</h3>
             <div className="achievements-grid">
               <div className="achievement-card">
-                <h4 className="achievement-title">Jenni.AI SWE Intern</h4>
-                <p className="achievement-company">Seoul, South Korea</p>
+                <h4 className="achievement-title">SWE Intern</h4>
+                <p className="achievement-company">Jenni.AI</p>
+                <p className="achievement-location">Seoul, SK</p>
+                <p className="achievement-date">Jun 2025 – Jan 2026</p>
                 <p className="achievement-description">
                   Full-time software engineering internship building advanced AI-powered writing and research tools.
                 </p>
@@ -788,6 +827,8 @@ const TheBoxMan: React.FC = () => {
               <div className="achievement-card">
                 <h4 className="achievement-title">ManuscriptCheck.ai Co-founder</h4>
                 <p className="achievement-company">Entrepreneurship</p>
+                <p className="achievement-location">Ankara, Turkey</p>
+                <p className="achievement-date">2025 - Present</p>
                 <p className="achievement-description">
                   Co-founded an AI tool that streamlines the academic publishing process, revolutionizing research workflows.
                 </p>
