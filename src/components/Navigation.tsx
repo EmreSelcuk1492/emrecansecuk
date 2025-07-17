@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 const Navigation: React.FC = () => {
@@ -14,6 +14,18 @@ const Navigation: React.FC = () => {
       setMobileMenuOpen(false); // Close mobile menu after selection
     }
   };
+
+  // Throttle function for scroll events
+  const throttle = useCallback((func: () => void, limit: number) => {
+    let inThrottle: boolean;
+    return function() {
+      if (!inThrottle) {
+        func.apply(null);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    };
+  }, []);
 
   // Track which section is currently in view
   useEffect(() => {
@@ -43,11 +55,14 @@ const Navigation: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Throttle scroll events to fire at most every 16ms (60fps)
+    const throttledHandleScroll = throttle(handleScroll, 16);
+
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
     handleScroll(); // Check initial position
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
+  }, [throttle]);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
