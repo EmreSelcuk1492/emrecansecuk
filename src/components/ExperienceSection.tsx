@@ -1,259 +1,156 @@
-import React, { useState } from 'react';
-import mahiLogo from '../assets/companies/mahi.gif';
-import biolegacyLogo from '../assets/companies/bio-legacy-replacement.png';
-import jenniLogo from '../assets/companies/jenni-ai-logo-replacement.png';
-import entegrisLogo from '../assets/companies/entegris-replacement.png';
-import zsistemLogo from '../assets/companies/z-sistem-replacement.png';
-import aitalesLogo from '../assets/companies/AI-Tales.svg';
-
-interface Experience {
-  id: string;
-  company: string;
-  role: string;
-  duration: string;
-  location: string;
-  logo: string;
-  logoType: 'emoji' | 'microsoft' | 'blueorigin' | 'hcrlab' | 'cledge' | 'codeninjas' | 'jenni' | 'mahi' | 'biolegacy' | 'entegris' | 'zsistem' | 'aitales';
-  team?: string;
-  description: string[];
-  skills: string[];
-  color: string;
-}
+import React, { useState, useEffect } from 'react';
+import LazyImage from './LazyImage';
 
 const ExperienceSection: React.FC = () => {
-  const [showComingSoon, setShowComingSoon] = useState(false);
+  const [companyAssets, setCompanyAssets] = useState<Record<string, string>>({});
 
-  // Function to get company website URLs
-  const getCompanyUrl = (company: string): string => {
-    const companyUrls: { [key: string]: string } = {
-      'Jenni.AI': 'https://jenni.ai',
-      'Entegris': 'https://entegris.com',
-      'Z-Sistem': 'https://www.z-sistem.com/zs/en/home/',
-      'AI-Tales': '/coming-soon', // Internal page for coming soon
-      'BioLegacy': 'https://www.linkedin.com/company/biolegacy1/',
-      'MAHI Lab': 'https://mahilab.rice.edu/'
+  // Dynamically import company logos only when needed
+  useEffect(() => {
+    const loadCompanyLogos = async () => {
+      try {
+        const [
+          mahiLogo,
+          biolegacyLogo,
+          jenniLogo,
+          entegrisLogo,
+          zsistemLogo,
+          aitalesLogo
+        ] = await Promise.all([
+          import('../assets/companies/mahi.gif'),
+          import('../assets/companies/bio-legacy-replacement.png'),
+          import('../assets/companies/jenni-ai-logo-replacement.png'),
+          import('../assets/companies/entegris-replacement.png'),
+          import('../assets/companies/z-sistem-replacement.png'),
+          import('../assets/companies/AI-Tales.svg')
+        ]);
+
+        setCompanyAssets({
+          mahi: mahiLogo.default,
+          biolegacy: biolegacyLogo.default,
+          jenni: jenniLogo.default,
+          entegris: entegrisLogo.default,
+          zsistem: zsistemLogo.default,
+          aitales: aitalesLogo.default
+        });
+      } catch (error) {
+        console.error('Error loading company logos:', error);
+      }
     };
-    return companyUrls[company] || '#';
-  };
 
-  // Function to handle company link clicks
-  const handleCompanyClick = (company: string, e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent triggering the job selection
-    const url = getCompanyUrl(company);
-    
-    if (url === '/coming-soon') {
-      // For AI-Tales, show coming soon modal
-      setShowComingSoon(true);
-    } else if (url !== '#') {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
-  };
+    loadCompanyLogos();
+  }, []);
 
-  const experiences: Experience[] = [
+  const experiences = [
     {
-      id: 'jenni-ai',
-      company: 'Jenni.AI',
-      role: 'SWE Intern',
-      duration: 'Jun 2025 – Jan 2026',
-      location: 'Seoul, SK',
-      logo: jenniLogo,
-      logoType: 'jenni',
-      description: [
-        'Spearheading <strong>Stealth</strong> for Jenni.ai',
-        'Owning production uptime & feature velocity for <strong>ManuscriptCheck.ai</strong>'
-      ],
-      skills: [],
-      color: '#8B008B'
+      id: 1,
+      company: "Jenni.AI",
+      role: "Software Engineering Intern",
+      period: "Jun 2025 – Jan 2026",
+      location: "Seoul, SK",
+      description: "Building advanced AI-powered writing and research tools for millions of users worldwide.",
+      logoKey: "jenni",
+      skills: ["React", "TypeScript", "Python", "AI/ML", "Node.js"]
     },
     {
-      id: 'entegris',
-      company: 'Entegris',
-      role: 'TPM Co-op',
-      duration: 'Jan 2025 – Jun 2025',
-      location: 'Boston, MA',
-      logo: entegrisLogo,
-      logoType: 'entegris',
-      description: [
-        'Built <strong>Accolade + Power BI</strong> executive dashboards that shape quarterly OKRs',
-        'Rolled out <strong>M365 Copilot Studio agentic workflows</strong>; demoed live at monthly PMC',
-        'Championed <strong>Sustainable Design</strong> principles for New Product Development programs'
-      ],
-      skills: [],
-      color: '#0078D4'
+      id: 2,
+      company: "AI-Tales",
+      role: "Software Engineer",
+      period: "Sep 2024 – Dec 2024",
+      location: "Gyeonggi-do, SK",
+      description: "Developed AI-powered storytelling platform with focus on user experience and content generation.",
+      logoKey: "aitales",
+      skills: ["Vue.js", "Python", "FastAPI", "PostgreSQL", "AI/ML"]
     },
     {
-      id: 'z-sistem',
-      company: 'Z-Sistem',
-      role: 'Systems Intern',
-      duration: 'Jun 2024 – Sep 2024',
-      location: 'Ankara, TR',
-      logo: zsistemLogo,
-      logoType: 'zsistem',
-      description: [
-        'Led <strong>NATO DIANA</strong> avionics + autonomy proposal',
-        'Developed <strong>OpenCV</strong> camera-calibration pipeline (≤ 2 cm error) across webcams, ArduCam, Android',
-        'Integrated <strong>PX4</strong> in Gazebo for VTOL auto-landing sims; authored <strong>Qt</strong> vibration-test GUI'
-      ],
-      skills: [],
-      color: '#003366'
+      id: 3,
+      company: "Entegris",
+      role: "Technical Program Manager Co-op",
+      period: "Jan 2024 – Aug 2024",
+      location: "Boston, MA",
+      description: "Managed cross-functional projects for semiconductor manufacturing equipment optimization.",
+      logoKey: "entegris",
+      skills: ["Project Management", "Data Analysis", "Process Optimization", "Agile"]
     },
     {
-      id: 'ai-tales',
-      company: 'AI-Tales',
-      role: 'SWE Engineer',
-      duration: 'Feb 2024 – May 2024',
-      location: 'Gyeonggi-do, SK',
-      logo: aitalesLogo,
-      logoType: 'aitales',
-      description: [
-        'Shipped lightweight <strong>Ruby on Rails + Hotwire</strong> Ed-Tech MVP, powered by <strong>GPT-4 & Sora-Vision</strong>',
-        'Designed child- & teacher-friendly <strong>one-stop learning UI</strong> for Seoul hagwons'
-      ],
-      skills: [],
-      color: '#2E8B57'
+      id: 4,
+      company: "Z-Sistem",
+      role: "Systems Development Intern",
+      period: "Sep 2024 – Dec 2024",
+      location: "Ankara, Turkey",
+      description: "Worked on VTOL drone camera calibration systems, developing precision technical solutions.",
+      logoKey: "zsistem",
+      skills: ["Systems Engineering", "Computer Vision", "Python", "Hardware Integration"]
     },
     {
-      id: 'biolegacy',
-      company: 'BioLegacy',
-      role: 'Research Intern',
-      duration: 'Jan 2023 – Aug 2023',
-      location: 'Seattle, WA',
-      logo: biolegacyLogo,
-      logoType: 'biolegacy',
-      description: [
-        'Drove early-stage <strong>R&D</strong> on organic re-warming in UW\'s Cryobiology Lab',
-        'Automated vitrification tests; ran deep <strong>Python data-analysis</strong> on CPA performance',
-        '<strong>$50k+</strong> in funding won: <em>Harriet Stevenson Business Award</em> & <em>Herbert B. Jones Grand Prize</em>'
-      ],
-      skills: [],
-      color: '#8B4513'
+      id: 5,
+      company: "BioLegacy",
+      role: "Research Intern",
+      period: "Jun 2023 – Aug 2023",
+      location: "Seattle, WA",
+      description: "Conducted research on biomedical data analysis and developed software tools for genomic research.",
+      logoKey: "biolegacy",
+      skills: ["Bioinformatics", "Python", "Data Analysis", "Research Methods"]
     },
     {
-      id: 'mahi-lab',
-      company: 'MAHI Lab',
-      role: 'Research Intern',
-      duration: 'Jun 2022 – Sep 2022',
-      location: 'Houston, TX',
-      logo: mahiLogo,
-      logoType: 'mahi',
-      description: [
-        'Co-authored IEEE paper on the <strong>Snaptics</strong> modular haptics platform',
-        'Fabricated low-cost haptic devices via <strong>3-D printing & micro-soldering</strong>, halving BOM cost',
-        'Mined human-subject data in <strong>Python</strong> to validate Snaptics vs. commercial systems',
-        '<em>Citation:</em> <strong>Zook ZA et al., "Validation of Snaptics…," IEEE Trans Haptics 17 (4): 830-840, 2024</strong>'
-      ],
-      skills: [],
-      color: '#FF6347'
+      id: 6,
+      company: "MAHI Lab",
+      role: "Research Intern",
+      period: "May 2023 – Aug 2023",
+      location: "Houston, TX",
+      description: "Developed haptic feedback systems for medical robotics applications.",
+      logoKey: "mahi",
+      skills: ["Robotics", "C++", "MATLAB", "Hardware Development", "Research"]
     }
   ];
 
-  const [selectedExperience, setSelectedExperience] = useState<Experience>(experiences[0]);
-
-  const renderLogo = (exp: Experience) => {
-    if (exp.logoType === 'mahi' || exp.logoType === 'biolegacy' || exp.logoType === 'jenni' || exp.logoType === 'entegris' || exp.logoType === 'zsistem' || exp.logoType === 'aitales') {
-      return <img src={exp.logo} alt={`${exp.company} logo`} className="company-logo" />;
-    }
-    return <span className="emoji-logo">{exp.logo}</span>;
-  };
-
   return (
-    <>
-      <section id="experience" className="section">
-        <div className="container">
-          <div className="experience-split-container">
-            <div className="experience-split-header">
-              <h2 className="experience-split-title">Experience</h2>
-            </div>
-            
-            <div className="experience-split-content">
-              {/* Job List Sidebar */}
-              <div className="experience-job-list">
-                {experiences.map((exp) => (
-                  <div 
-                    key={exp.id}
-                    data-experience-id={exp.id}
-                    className={`job-list-item ${selectedExperience.id === exp.id ? 'active' : ''}`}
-                    onClick={() => setSelectedExperience(exp)}
-                  >
-                    <div className="job-list-logo">
-                      {renderLogo(exp)}
-                    </div>
-                    <div className="job-list-info">
-                      <div className="job-list-primary">
-                        <span 
-                          className="job-list-company company-link"
-                          onClick={(e) => handleCompanyClick(exp.company, e)}
-                        >
-                          {exp.company}
-                        </span>
-                        <span className="job-list-role">| {exp.role}</span>
+    <section id="experience" className="section">
+      <div className="container">
+        <h2 className="section-title">Experience</h2>
+        <div className="experience-timeline">
+          {experiences.map((exp, index) => (
+            <div key={exp.id} className={`experience-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+              <div className="experience-card">
+                <div className="experience-header">
+                  <div className="company-logo-container">
+                    {companyAssets[exp.logoKey] ? (
+                      <LazyImage
+                        src={companyAssets[exp.logoKey]}
+                        alt={`${exp.company} Logo`}
+                        className="company-logo"
+                      />
+                    ) : (
+                      <div className="company-logo-placeholder">
+                        <div>{exp.company.charAt(0)}</div>
                       </div>
-                      <div className="job-list-secondary">{exp.duration}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Job Details Panel */}
-              <div className="experience-job-details">
-                <div className="job-details-card">
-                  <div className="job-details-header">
-                    <h3 
-                      className="job-details-company company-link"
-                      onClick={(e) => handleCompanyClick(selectedExperience.company, e)}
-                    >
-                      {selectedExperience.company}
-                    </h3>
-                    {selectedExperience.team && (
-                      <h4 className="job-details-team">{selectedExperience.team}</h4>
                     )}
-                    <div className="job-details-meta">
-                      <span className="job-details-role">{selectedExperience.role}</span>
-                      <span className="job-details-duration">{selectedExperience.duration}</span>
-                      <span className="job-details-location">{selectedExperience.location}</span>
-                    </div>
                   </div>
-                  
-                  <div className="job-details-description">
-                    <ul>
-                      {selectedExperience.description.map((item, index) => (
-                        <li key={index} dangerouslySetInnerHTML={{ __html: item }}></li>
-                      ))}
-                    </ul>
+                  <div className="experience-info">
+                    <h3 className="company-name">{exp.company}</h3>
+                    <h4 className="role-title">{exp.role}</h4>
+                    <div className="experience-meta">
+                      <span className="period">{exp.period}</span>
+                      <span className="location">{exp.location}</span>
+                    </div>
                   </div>
                 </div>
+                
+                <p className="experience-description">{exp.description}</p>
+                
+                <div className="skills-container">
+                  {exp.skills.map((skill, skillIndex) => (
+                    <span key={skillIndex} className="skill-tag">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
+              <div className="timeline-dot"></div>
             </div>
-          </div>
+          ))}
         </div>
-      </section>
-
-      {/* Coming Soon Modal */}
-      {showComingSoon && (
-        <div className="coming-soon-overlay" onClick={() => setShowComingSoon(false)}>
-          <div className="coming-soon-modal" onClick={(e) => e.stopPropagation()}>
-            <button 
-              className="coming-soon-close"
-              onClick={() => setShowComingSoon(false)}
-            >
-              ×
-            </button>
-            <div className="coming-soon-content">
-              <div className="coming-soon-icon">🚧</div>
-              <h3>Coming Soon!</h3>
-              <p>AI-Tales company website is currently under development.</p>
-              <p>Check back soon for updates!</p>
-              <button 
-                className="coming-soon-button"
-                onClick={() => setShowComingSoon(false)}
-              >
-                Got it!
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+      </div>
+    </section>
   );
 };
 

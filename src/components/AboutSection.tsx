@@ -1,11 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Globe from 'react-globe.gl';
+import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { useTheme } from '../context/ThemeContext';
+
+// Dynamically import Globe component
+const Globe = lazy(() => 
+  import('react-globe.gl').then(module => ({ default: module.default }))
+);
 
 const AboutSection: React.FC = () => {
   const globeRef = useRef<any>();
+  const sectionRef = useRef<HTMLElement>(null);
   const { theme } = useTheme();
   const [isMobile, setIsMobile] = useState(false);
+  const [shouldLoadGlobe, setShouldLoadGlobe] = useState(false);
 
   // Check if mobile on mount and resize
   useEffect(() => {
@@ -17,6 +23,33 @@ const AboutSection: React.FC = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Intersection Observer to load Globe when section is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldLoadGlobe) {
+            setShouldLoadGlobe(true);
+          }
+        });
+      },
+      {
+        rootMargin: '100px', // Load 100px before the section is visible
+        threshold: 0.1
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [shouldLoadGlobe]);
 
   // Experience locations data
   const experienceLocations = [
@@ -89,7 +122,7 @@ const AboutSection: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (globeRef.current) {
+    if (globeRef.current && shouldLoadGlobe) {
       // Disable zoom and pan controls but enable auto-rotation
       const controls = globeRef.current.controls();
       controls.enableZoom = false;
@@ -98,7 +131,23 @@ const AboutSection: React.FC = () => {
       controls.autoRotate = true;
       controls.autoRotateSpeed = isMobile ? 1.0 : 1.5; // Slower on mobile for better performance
     }
-  }, [isMobile]);
+  }, [globeRef.current, shouldLoadGlobe, isMobile]);
+
+  // Globe loading component
+  const GlobeLoader = () => (
+    <div style={{
+      width: isMobile ? '280px' : '400px',
+      height: isMobile ? '280px' : '400px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'rgba(255, 255, 255, 0.1)',
+      borderRadius: '50%',
+      border: '1px solid rgba(255, 255, 255, 0.2)'
+    }}>
+      <div style={{ color: 'var(--color-text-primary)' }}>Loading Globe...</div>
+    </div>
+  );
 
   const handleLocationClick = (point: any) => {
     // Handle multiple experiences (Korea) - go to most recent
@@ -184,7 +233,7 @@ const AboutSection: React.FC = () => {
   }, [globeSize.width]);
 
   return (
-    <section id="about" className="section">
+    <section id="about" className="section" ref={sectionRef}>
       <div className="container">
         <h2 className="section-title">About Me</h2>
         <div className="about-content-responsive">
@@ -208,82 +257,84 @@ const AboutSection: React.FC = () => {
           
           <div className="globe-container-responsive">
             <div className="globe-wrapper">
-              <Globe
-                ref={globeRef}
-                globeImageUrl={globeConfig.globeImageUrl}
-                backgroundImageUrl={globeConfig.backgroundImageUrl}
-                backgroundColor={globeConfig.backgroundColor}
-                pointsData={experienceLocations}
-                pointAltitude={(d: any) => d.altitude}
-                pointColor={(d: any) => d.color}
-                pointRadius={isMobile ? 1.5 : 2.0}
-                pointResolution={isMobile ? 16 : 32}
-                pointLabel={(d: any) => {
-                  if (d.isMultiple) {
-                    // Multiple experiences (Korea) - show both but no clickable elements
-                    return `
-                      <div style="
-                        color: white; 
-                        font-weight: bold; 
-                        background: rgba(0,0,0,0.95); 
-                        padding: ${isMobile ? '12px 16px' : '16px 20px'}; 
-                        border-radius: 12px;
-                        border: 3px solid #ffffff;
-                        max-width: ${isMobile ? '200px' : '280px'};
-                        line-height: 1.4;
-                        cursor: pointer;
-                        box-shadow: 0 4px 20px rgba(0,0,0,0.8);
-                        backdrop-filter: blur(10px);
-                      ">
-                        <div style="font-size: ${isMobile ? '14px' : '16px'}; margin-bottom: ${isMobile ? '8px' : '12px'}; color: #ffffff; font-weight: 800; text-align: center;">🇰🇷 ${d.name}</div>
-                        ${d.experiences.map((exp: any) => `
-                          <div style="
-                            background: rgba(255,255,255,0.1);
-                            padding: ${isMobile ? '6px 10px' : '8px 12px'};
-                            margin: ${isMobile ? '4px 0' : '6px 0'};
-                            border-radius: 8px;
-                            border: 1px solid rgba(255,255,255,0.3);
-                          ">
-                            <div style="font-size: ${isMobile ? '12px' : '14px'}; color: #fff; font-weight: 600;">${exp.company} <span style="color: #aaa; font-size: ${isMobile ? '10px' : '11px'};">(${exp.year})</span></div>
-                            <div style="font-size: ${isMobile ? '10px' : '12px'}; color: #ccc;">${exp.role}</div>
-                            <div style="font-size: ${isMobile ? '9px' : '11px'}; color: #aaa;">📍 ${exp.location}</div>
-                          </div>
-                        `).join('')}
-                      </div>
-                    `;
-                  } else {
-                    // Single experience
-                    return `
-                      <div style="
-                        color: white; 
-                        font-weight: bold; 
-                        background: rgba(0,0,0,0.95); 
-                        padding: ${isMobile ? '10px 14px' : '12px 16px'}; 
-                        border-radius: 12px;
-                        border: 3px solid #ffffff;
-                        max-width: ${isMobile ? '180px' : '220px'};
-                        line-height: 1.4;
-                        cursor: pointer;
-                        box-shadow: 0 4px 20px rgba(0,0,0,0.8);
-                        backdrop-filter: blur(10px);
-                      ">
-                        <div style="font-size: ${isMobile ? '14px' : '16px'}; margin-bottom: 4px; color: #ffffff; font-weight: 800;">${d.company}</div>
-                        <div style="font-size: ${isMobile ? '11px' : '13px'}; color: #fff; margin-bottom: 2px;">${d.role}</div>
-                        <div style="font-size: ${isMobile ? '10px' : '12px'}; color: #bbb; margin-top: 3px;">📍 ${d.name}</div>
-                      </div>
-                    `;
-                  }
-                }}
-                onPointClick={handleLocationClick}
-                onPointHover={isMobile ? undefined : handleLocationHover}
-                width={globeSize.width}
-                height={globeSize.height}
-                enablePointerInteraction={true}
-                atmosphereColor={globeConfig.atmosphereColor}
-                atmosphereAltitude={0.25}
-                showAtmosphere={true}
-                showGraticules={false}
-              />
+              <Suspense fallback={<GlobeLoader />}>
+                <Globe
+                  ref={globeRef}
+                  globeImageUrl={globeConfig.globeImageUrl}
+                  backgroundImageUrl={globeConfig.backgroundImageUrl}
+                  backgroundColor={globeConfig.backgroundColor}
+                  pointsData={experienceLocations}
+                  pointAltitude={(d: any) => d.altitude}
+                  pointColor={(d: any) => d.color}
+                  pointRadius={isMobile ? 1.5 : 2.0}
+                  pointResolution={isMobile ? 16 : 32}
+                  pointLabel={(d: any) => {
+                    if (d.isMultiple) {
+                      // Multiple experiences (Korea) - show both but no clickable elements
+                      return `
+                        <div style="
+                          color: white; 
+                          font-weight: bold; 
+                          background: rgba(0,0,0,0.95); 
+                          padding: ${isMobile ? '12px 16px' : '16px 20px'}; 
+                          border-radius: 12px;
+                          border: 3px solid #ffffff;
+                          max-width: ${isMobile ? '200px' : '280px'};
+                          line-height: 1.4;
+                          cursor: pointer;
+                          box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+                          backdrop-filter: blur(10px);
+                        ">
+                          <div style="font-size: ${isMobile ? '14px' : '16px'}; margin-bottom: ${isMobile ? '8px' : '12px'}; color: #ffffff; font-weight: 800; text-align: center;">🇰🇷 ${d.name}</div>
+                          ${d.experiences.map((exp: any) => `
+                            <div style="
+                              background: rgba(255,255,255,0.1);
+                              padding: ${isMobile ? '6px 10px' : '8px 12px'};
+                              margin: ${isMobile ? '4px 0' : '6px 0'};
+                              border-radius: 8px;
+                              border: 1px solid rgba(255,255,255,0.3);
+                            ">
+                              <div style="font-size: ${isMobile ? '12px' : '14px'}; color: #fff; font-weight: 600;">${exp.company} <span style="color: #aaa; font-size: ${isMobile ? '10px' : '11px'};">(${exp.year})</span></div>
+                              <div style="font-size: ${isMobile ? '10px' : '12px'}; color: #ccc;">${exp.role}</div>
+                              <div style="font-size: ${isMobile ? '9px' : '11px'}; color: #aaa;">📍 ${exp.location}</div>
+                            </div>
+                          `).join('')}
+                        </div>
+                      `;
+                    } else {
+                      // Single experience
+                      return `
+                        <div style="
+                          color: white; 
+                          font-weight: bold; 
+                          background: rgba(0,0,0,0.95); 
+                          padding: ${isMobile ? '10px 14px' : '12px 16px'}; 
+                          border-radius: 12px;
+                          border: 3px solid #ffffff;
+                          max-width: ${isMobile ? '180px' : '220px'};
+                          line-height: 1.4;
+                          cursor: pointer;
+                          box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+                          backdrop-filter: blur(10px);
+                        ">
+                          <div style="font-size: ${isMobile ? '14px' : '16px'}; margin-bottom: 4px; color: #ffffff; font-weight: 800;">${d.company}</div>
+                          <div style="font-size: ${isMobile ? '11px' : '13px'}; color: #fff; margin-bottom: 2px;">${d.role}</div>
+                          <div style="font-size: ${isMobile ? '10px' : '12px'}; color: #bbb; margin-top: 3px;">📍 ${d.name}</div>
+                        </div>
+                      `;
+                    }
+                  }}
+                  onPointClick={handleLocationClick}
+                  onPointHover={isMobile ? undefined : handleLocationHover}
+                  width={globeSize.width}
+                  height={globeSize.height}
+                  enablePointerInteraction={true}
+                  atmosphereColor={globeConfig.atmosphereColor}
+                  atmosphereAltitude={0.25}
+                  showAtmosphere={true}
+                  showGraticules={false}
+                />
+              </Suspense>
             </div>
           </div>
         </div>
